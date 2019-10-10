@@ -4,18 +4,18 @@ import 'package:todo/ui/add_preco.dart';
 
 
 class FruitPage extends StatelessWidget {
+  final String id;
 
-  final Map _fruitData;
   final String nameFruit;
-  final String image_fruit;
+  final String imageFruit;
   final int unidade;
   final String type; 
-  FruitPage(this._fruitData, this.nameFruit, this.image_fruit, this.unidade, this.type);
+  FruitPage(this.id, this.nameFruit, this.imageFruit, this.unidade, this.type);
 
   @override
   Widget build(BuildContext context) {
 
-    double c_width = MediaQuery.of(context).size.width*0.4;
+    double cWidth = MediaQuery.of(context).size.width*0.4;
     bool c = true;
     return Scaffold(
       appBar: AppBar(
@@ -45,16 +45,25 @@ class FruitPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 30.0),
                 child:  Container(
-                  width: c_width,
+                  width: cWidth,
                   child: Column(
                 children: <Widget>[
                   Text(nameFruit,
                   style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold,),
                   textAlign: TextAlign.center,
                   ),
-                  Text("R\$ 200.00",
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Text("R\$",
                   style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
                   textAlign: TextAlign.center,
+                  ),
+                  Text("200.00",
+                  style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                  textAlign: TextAlign.center,
+                  ),
+                    ],
                   ),
                 ],
               ),
@@ -112,7 +121,7 @@ class FruitPage extends StatelessWidget {
               child: Center(
                 child: Column(
                   children: <Widget>[
-                    Text("Sales for the  5 years", style: TextStyle(fontSize: 24.0,), ),
+                    Text("Variação do Preço", style: TextStyle(fontSize: 24.0,), ),
                   ],
                 ),
               ),
@@ -125,7 +134,7 @@ class FruitPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddPreco()),
+              MaterialPageRoute(builder: (context) => AddPreco(id)),
               );
         },
         backgroundColor: Colors.redAccent,
